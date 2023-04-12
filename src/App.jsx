@@ -1,7 +1,8 @@
-import "./App.css";
 import { TodoItem } from "./components/TodoItem/TodoItem";
 
 import { todos } from "./data/todos";
+
+import "../dist/index.css";
 
 function App() {
   console.log(todos);
