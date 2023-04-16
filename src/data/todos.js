@@ -1,7 +1,7 @@
 export const todos = [
   {
     title: "Cortar cebolla",
-    completed: false,
+    completed: true,
   },
 
   {

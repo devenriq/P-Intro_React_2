@@ -1,7 +1,5 @@
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
-
 import { TodoItem } from "../index";
-
 import { todos } from "../../data/todos";
 
 export const TodoList = () => {
@@ -10,7 +8,7 @@ export const TodoList = () => {
       {todos.map(({ title, completed }) => (
         <TodoItem key={title} title={title} completed={completed} />
       ))}
-      <PlusCircleIcon className="text-purple-400" />
+      <PlusCircleIcon className="text-purple-400 w-20 h-20" />
     </ul>
   );
 };
