@@ -1,7 +1,12 @@
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import { TodoItem } from "../index";
 
-export const TodoList = ({ todos, searchValue, toggleTodoCompleted }) => {
+export const TodoList = ({
+  todos,
+  searchValue,
+  toggleTodoCompleted,
+  toggleTodoDelete,
+}) => {
   const filteredTodo = todos.filter(({ title }) => {
     const lowerTitle = title.toLowerCase();
     return lowerTitle.includes(searchValue.toLowerCase());
@@ -15,6 +20,7 @@ export const TodoList = ({ todos, searchValue, toggleTodoCompleted }) => {
           title={title}
           completed={completed}
           toggleTodoCompleted={toggleTodoCompleted}
+          toggleTodoDelete={toggleTodoDelete}
         />
       ))}
 

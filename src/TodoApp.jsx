@@ -22,7 +22,13 @@ function TodoApp() {
     setTodos(newTodos);
   };
 
-  console.log(todos);
+  const toggleTodoDelete = (title) => {
+    const todoIndex = todos.findIndex((todo) => todo.title === title);
+    const newTodos = [...todos];
+    newTodos.splice(todoIndex, 1);
+
+    setTodos(newTodos);
+  };
 
   const completedTodo = todos.filter((todo) => !!todo.completed).length;
   const pendingTodo = todos.filter((todo) => !todo.completed).length;
@@ -39,6 +45,7 @@ function TodoApp() {
         todos={todos}
         searchValue={searchValue}
         toggleTodoCompleted={toggleTodoCompleted}
+        toggleTodoDelete={toggleTodoDelete}
       />
       <CreateTodoButton />
     </div>
