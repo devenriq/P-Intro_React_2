@@ -14,6 +14,16 @@ function TodoApp() {
   const [todos, setTodos] = useState(defaultTodos);
   const [searchValue, setSearchValue] = useState("");
 
+  const toggleTodoCompleted = (title) => {
+    const todoIndex = todos.findIndex((todo) => todo.title === title);
+    const newTodos = [...todos];
+    newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
+
+    setTodos(newTodos);
+  };
+
+  console.log(todos);
+
   const completedTodo = todos.filter((todo) => !!todo.completed).length;
   const pendingTodo = todos.filter((todo) => !todo.completed).length;
 
@@ -25,7 +35,11 @@ function TodoApp() {
         pendingTodo={pendingTodo}
       />
       <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
-      <TodoList defaultTodos={defaultTodos} searchValue={searchValue} />
+      <TodoList
+        todos={todos}
+        searchValue={searchValue}
+        toggleTodoCompleted={toggleTodoCompleted}
+      />
       <CreateTodoButton />
     </div>
   );

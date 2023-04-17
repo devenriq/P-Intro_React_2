@@ -1,33 +1,32 @@
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import { EllipsisHorizontalCircleIcon } from "@heroicons/react/24/solid";
 import { XCircleIcon } from "@heroicons/react/24/solid";
-import { useState } from "react";
 
-export const TodoItem = ({ title, completed }) => {
-  const [complete, setComplete] = useState(completed);
-
-  const onComplete = () => {
-    setComplete(!complete);
+export const TodoItem = ({ title, completed, toggleTodoCompleted }) => {
+  const handleToggleCompleted = () => {
+    toggleTodoCompleted(title);
   };
 
   const onDelete = () => {
     console.log(`Borraste el todo ${title}`);
   };
 
+  console.log(title);
+
   return (
     <li className="bg-white w-11/12 h-10 rounded-full py-2 px-8 grid grid-cols-12 relative">
       <p
         className="col-span-1 flex justify-center items-center"
-        onClick={onComplete}
+        onClick={handleToggleCompleted}
       >
-        {complete ? (
+        {completed ? (
           <CheckCircleIcon className="w-5 h-5 " />
         ) : (
           <EllipsisHorizontalCircleIcon className="w-5 h-5 " />
         )}
       </p>
 
-      <h2 className={`col-span-10 ${complete ? "line-through" : ""}`}>
+      <h2 className={`col-span-10 ${completed ? "line-through" : ""}`}>
         {title}
       </h2>
 

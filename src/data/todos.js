@@ -6,7 +6,7 @@ export const defaultTodos = [
 
   {
     title: "Llorar con la cebolla en la mano",
-    completed: false,
+    completed: true,
   },
 
   {
