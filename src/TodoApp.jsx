@@ -7,25 +7,13 @@ import {
   CreateTodoButton,
 } from "./components";
 
-import { defaultTodos } from "./data/todos";
+import { useLocalStorage } from "./components/hooks/useLocalStorage";
+
 import "../dist/index.css";
 
 function TodoApp() {
-  const localStorageTodos = localStorage.getItem("TODOS_V1");
-  let parsedTodos = localStorageTodos ? JSON.parse(localStorageTodos) : [];
-
-  if (!localStorageTodos) {
-    localStorage.setItem("TODOS_V1", JSON.stringify([]));
-  }
-
-  const [todos, setTodos] = useState(parsedTodos);
+  const [todos, saveTodos] = useLocalStorage("TODOS_V1", []);
   const [searchValue, setSearchValue] = useState("");
-
-  const saveTodos = (newTodos) => {
-    const stringifiedTodos = JSON.stringify(newTodos);
-    localStorage.setItem("TODOS_V1", stringifiedTodos);
-    setTodos(newTodos);
-  };
 
   const toggleTodoCompleted = (title) => {
     const todoIndex = todos.findIndex((todo) => todo.title === title);
