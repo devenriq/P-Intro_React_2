@@ -6,14 +6,23 @@ export const TodoList = ({
   searchValue,
   toggleTodoCompleted,
   toggleTodoDelete,
+  error,
+  loading,
 }) => {
   const filteredTodo = todos.filter(({ title }) => {
     const lowerTitle = title.toLowerCase();
     return lowerTitle.includes(searchValue.toLowerCase());
   });
 
+  console.log(loading);
+  console.log(searchValue.length);
+
   return (
     <ul className="w-full h-auto flex flex-col items-center gap-3">
+      {error && <p>Something went wrong.</p>}
+      {loading && <p>It's loading...</p>}
+      {!loading && !todos.length && <p>Create your first Todo</p>}
+
       {filteredTodo.map(({ title, completed }) => (
         <TodoItem
           key={title}

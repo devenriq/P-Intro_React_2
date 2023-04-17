@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   TodoCounter,
@@ -12,8 +12,17 @@ import { useLocalStorage } from "./components/hooks/useLocalStorage";
 import "../dist/index.css";
 
 function TodoApp() {
-  const [todos, saveTodos] = useLocalStorage("TODOS_V1", []);
+  const {
+    item: todos,
+    saveItem: saveTodos,
+    loading,
+    error,
+  } = useLocalStorage("TODOS_V1", []);
   const [searchValue, setSearchValue] = useState("");
+
+  useEffect(() => {
+    console.log("use effect");
+  }, [todos]);
 
   const toggleTodoCompleted = (title) => {
     const todoIndex = todos.findIndex((todo) => todo.title === title);
@@ -47,6 +56,7 @@ function TodoApp() {
         searchValue={searchValue}
         toggleTodoCompleted={toggleTodoCompleted}
         toggleTodoDelete={toggleTodoDelete}
+        loading={loading}
       />
       <CreateTodoButton />
     </div>
