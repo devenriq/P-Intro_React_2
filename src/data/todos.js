@@ -1,4 +1,4 @@
-export const todos = [
+export const defaultTodos = [
   {
     title: "Cortar cebolla",
     completed: true,

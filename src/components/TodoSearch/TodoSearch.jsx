@@ -1,14 +1,15 @@
-export const TodoSearch = () => {
+export const TodoSearch = ({ searchValue, setSearchValue }) => {
   const onSearchValueChange = (e) => {
-    console.log(e.target.value);
+    setSearchValue(e.target.value);
   };
 
   return (
     <div className="w-full h-8 my-5 flex justify-center">
       <input
-        className="rounded-lg h-8 p-3"
+        className="rounded-full h-8 py-2 px-4"
         type="text"
         placeholder="Escribe un todo"
+        value={searchValue}
         onChange={onSearchValueChange}
       />
     </div>
