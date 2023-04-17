@@ -11,15 +11,28 @@ import { defaultTodos } from "./data/todos";
 import "../dist/index.css";
 
 function TodoApp() {
-  const [todos, setTodos] = useState(defaultTodos);
+  const localStorageTodos = localStorage.getItem("TODOS_V1");
+  let parsedTodos = localStorageTodos ? JSON.parse(localStorageTodos) : [];
+
+  if (!localStorageTodos) {
+    localStorage.setItem("TODOS_V1", JSON.stringify([]));
+  }
+
+  const [todos, setTodos] = useState(parsedTodos);
   const [searchValue, setSearchValue] = useState("");
+
+  const saveTodos = (newTodos) => {
+    const stringifiedTodos = JSON.stringify(newTodos);
+    localStorage.setItem("TODOS_V1", stringifiedTodos);
+    setTodos(newTodos);
+  };
 
   const toggleTodoCompleted = (title) => {
     const todoIndex = todos.findIndex((todo) => todo.title === title);
     const newTodos = [...todos];
     newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
 
-    setTodos(newTodos);
+    saveTodos(newTodos);
   };
 
   const toggleTodoDelete = (title) => {
@@ -27,7 +40,7 @@ function TodoApp() {
     const newTodos = [...todos];
     newTodos.splice(todoIndex, 1);
 
-    setTodos(newTodos);
+    saveTodos(newTodos);
   };
 
   const completedTodo = todos.filter((todo) => !!todo.completed).length;
