@@ -7,6 +7,8 @@ import {
   CreateTodoButton,
 } from "./components";
 
+import Modal from "./components/modal/Modal";
+
 import { useLocalStorage } from "./components/hooks/useLocalStorage";
 import { TodoProvider } from "./components/context/TodoProvider";
 import { TodoContext } from "./components/context/TodoContext";
@@ -20,6 +22,9 @@ function TodoApp() {
         <TodoCounter />
         <TodoSearch />
         <TodoList />
+        <Modal>
+          <p>Teletransport</p>
+        </Modal>
         <CreateTodoButton />
       </div>
     </TodoProvider>
