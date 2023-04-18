@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import {
   TodoCounter,
@@ -8,10 +8,13 @@ import {
 } from "./components";
 
 import { useLocalStorage } from "./components/hooks/useLocalStorage";
+import { TodoProvider } from "./components/context/TodoProvider";
+import { TodoContext } from "./components/context/TodoContext";
 
 import "../dist/index.css";
 
 function TodoApp() {
+  const {} = useContext(TodoContext);
   const {
     item: todos,
     saveItem: saveTodos,
@@ -44,22 +47,24 @@ function TodoApp() {
   const pendingTodo = todos.filter((todo) => !todo.completed).length;
 
   return (
-    <div className="w-full h-screen bg-red-800 bg-opacity-20">
-      <TodoCounter
-        todos={todos}
-        completedTodo={completedTodo}
-        pendingTodo={pendingTodo}
-      />
-      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
-      <TodoList
-        todos={todos}
-        searchValue={searchValue}
-        toggleTodoCompleted={toggleTodoCompleted}
-        toggleTodoDelete={toggleTodoDelete}
-        loading={loading}
-      />
-      <CreateTodoButton />
-    </div>
+    <TodoProvider>
+      <div className="w-full h-screen bg-red-800 bg-opacity-20">
+        <TodoCounter
+          todos={todos}
+          completedTodo={completedTodo}
+          pendingTodo={pendingTodo}
+        />
+        <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
+        <TodoList
+          todos={todos}
+          searchValue={searchValue}
+          toggleTodoCompleted={toggleTodoCompleted}
+          toggleTodoDelete={toggleTodoDelete}
+          loading={loading}
+        />
+        <CreateTodoButton />
+      </div>
+    </TodoProvider>
   );
 }
 

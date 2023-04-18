@@ -1,32 +1,52 @@
-import { useState } from "react";
+import React, { useEffect } from "react";
 import { TodoContext } from "./TodoContext";
 
-import { defaultTodos } from "../../data/todos";
-
 export const TodoProvider = ({ children }) => {
-  const [todos, setTodos] = useState(defaultTodos);
-  const [searchValue, setSearchValue] = useState("");
+  // const {
+  //   item: todos,
+  //   saveItem: saveTodos,
+  //   loading,
+  //   error,
+  // } = useLocalStorage("TODOS_V1", []);
+  // const [searchValue, setSearchValue] = useState("");
 
-  const completeTodo = (text) => {
-    const todoIndex = todos.findIndex((todo) => todo.text == text);
-    const newTodos = [...todos];
-    newTodos[todoIndex].completed = true;
-    setTodos(newTodos);
-  };
+  // useEffect(() => {
+  //   console.log("use effect");
+  // }, [todos]);
 
-  const completedTodo = todos.filter((todo) => !!todo.completed).length;
-  const pendingTodo = todos.filter((todo) => !todo.completed).length;
+  // const toggleTodoCompleted = (title) => {
+  //   const todoIndex = todos.findIndex((todo) => todo.title === title);
+  //   const newTodos = [...todos];
+  //   newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
+
+  //   saveTodos(newTodos);
+  // };
+
+  // const toggleTodoDelete = (title) => {
+  //   const todoIndex = todos.findIndex((todo) => todo.title === title);
+  //   const newTodos = [...todos];
+  //   newTodos.splice(todoIndex, 1);
+
+  //   saveTodos(newTodos);
+  // };
+
+  // const completedTodo = todos.filter((todo) => !!todo.completed).length;
+  // const pendingTodo = todos.filter((todo) => !todo.completed).length;
 
   return (
     <TodoContext.Provider
-      value={{
-        todos,
-        completeTodo,
-        completedTodo,
-        pendingTodo,
-        searchValue,
-        setSearchValue,
-      }}
+      value={
+        {
+          // todos,
+          // saveTodos,
+          // loading,
+          // error,
+          // toggleTodoCompleted,
+          // toggleTodoDelete,
+          // completedTodo,
+          // pendingTodo,
+        }
+      }
     >
       {children}
     </TodoContext.Provider>
