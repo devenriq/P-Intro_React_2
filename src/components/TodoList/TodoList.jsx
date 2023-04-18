@@ -1,14 +1,18 @@
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import { TodoItem } from "../index";
+import { useContext } from "react";
+import { TodoContext } from "../context/TodoContext";
 
-export const TodoList = ({
-  todos,
-  searchValue,
-  toggleTodoCompleted,
-  toggleTodoDelete,
-  error,
-  loading,
-}) => {
+export const TodoList = () => {
+  const {
+    todos,
+    searchValue,
+    toggleTodoCompleted,
+    toggleTodoDelete,
+    error,
+    loading,
+  } = useContext(TodoContext);
+
   const filteredTodo = todos.filter(({ title }) => {
     const lowerTitle = title.toLowerCase();
     return lowerTitle.includes(searchValue.toLowerCase());

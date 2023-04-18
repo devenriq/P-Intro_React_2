@@ -11,10 +11,6 @@ export const TodoProvider = ({ children }) => {
   } = useLocalStorage("TODOS_V1", []);
   const [searchValue, setSearchValue] = useState("");
 
-  useEffect(() => {
-    console.log("use effect");
-  }, [todos]);
-
   const toggleTodoCompleted = (title) => {
     const todoIndex = todos.findIndex((todo) => todo.title === title);
     const newTodos = [...todos];
