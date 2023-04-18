@@ -10,6 +10,7 @@ export const TodoProvider = ({ children }) => {
     error,
   } = useLocalStorage("TODOS_V1", []);
   const [searchValue, setSearchValue] = useState("");
+  const [openModal, setOpenModal] = useState(false);
 
   const toggleTodoCompleted = (title) => {
     const todoIndex = todos.findIndex((todo) => todo.title === title);
@@ -25,6 +26,10 @@ export const TodoProvider = ({ children }) => {
     newTodos.splice(todoIndex, 1);
 
     saveTodos(newTodos);
+  };
+
+  const handleOpenModal = () => {
+    setOpenModal(!openModal);
   };
 
   const completedTodo = todos.filter((todo) => !!todo.completed).length;
@@ -43,6 +48,9 @@ export const TodoProvider = ({ children }) => {
         toggleTodoDelete,
         completedTodo,
         pendingTodo,
+        openModal,
+        setOpenModal,
+        handleOpenModal,
       }}
     >
       {children}

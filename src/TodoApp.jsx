@@ -16,15 +16,21 @@ import { TodoContext } from "./components/context/TodoContext";
 import "../dist/index.css";
 
 function TodoApp() {
+  const { openModal, setOpenModal } = useContext(TodoContext);
+
+  console.log(openModal);
+
   return (
     <TodoProvider>
       <div className="w-full h-screen bg-red-800 bg-opacity-20">
         <TodoCounter />
         <TodoSearch />
         <TodoList />
-        <Modal>
-          <p>Teletransport</p>
-        </Modal>
+        {!!openModal && (
+          <Modal>
+            <p>Teleport</p>
+          </Modal>
+        )}
         <CreateTodoButton />
       </div>
     </TodoProvider>
