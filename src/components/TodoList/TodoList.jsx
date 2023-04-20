@@ -1,7 +1,7 @@
-import { PlusCircleIcon } from "@heroicons/react/24/solid";
-import { TodoItem } from "../index";
 import { useContext, useEffect } from "react";
-import { TodoContext } from "../context/TodoContext";
+import { PlusCircleIcon } from "@heroicons/react/24/solid";
+
+import { TodoForm, TodoItem, TodoContext } from "../index";
 import Modal from "../modal/Modal";
 
 export const TodoList = () => {
@@ -19,10 +19,6 @@ export const TodoList = () => {
     const lowerTitle = title.toLowerCase();
     return lowerTitle.includes(searchValue.toLowerCase());
   });
-
-  useEffect(() => {
-    console.log("openModal changed:", openModal);
-  }, [openModal]);
 
   return (
     <ul className="w-full h-auto flex flex-col items-center gap-3">
@@ -43,7 +39,7 @@ export const TodoList = () => {
       {/* Se abre el modal de acuerdo a si se ha apretado o no el botón para agregar todos */}
       {!!openModal && (
         <Modal>
-          <p>Teleport</p>
+          <TodoForm />
         </Modal>
       )}
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { TodoContext } from "./TodoContext";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
@@ -20,6 +20,16 @@ export const TodoProvider = ({ children }) => {
     saveTodos(newTodos);
   };
 
+  const addTodo = (title) => {
+    const newTodos = [...todos];
+    newTodos.push({
+      completed: false,
+      title,
+    });
+
+    saveTodos(newTodos);
+  };
+
   const toggleTodoDelete = (title) => {
     const todoIndex = todos.findIndex((todo) => todo.title === title);
     const newTodos = [...todos];
@@ -30,7 +40,6 @@ export const TodoProvider = ({ children }) => {
 
   const handleOpenModal = () => {
     setOpenModal(!openModal);
-    console.log(openModal);
   };
 
   const completedTodo = todos.filter((todo) => !!todo.completed).length;
@@ -50,8 +59,8 @@ export const TodoProvider = ({ children }) => {
         completedTodo,
         pendingTodo,
         openModal,
-        setOpenModal,
         handleOpenModal,
+        addTodo,
       }}
     >
       {children}

@@ -1,13 +1,9 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 
 import { TodoContext } from "../context/TodoContext";
 
 export const CreateTodoButton = () => {
   const { handleOpenModal } = useContext(TodoContext);
-
-  const [button, setButton] = useState([]);
-
-  // console.log(openModal);
 
   return (
     <div className="flex justify-center items-center relative ">
