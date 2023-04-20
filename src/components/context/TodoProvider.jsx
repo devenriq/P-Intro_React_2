@@ -30,6 +30,7 @@ export const TodoProvider = ({ children }) => {
 
   const handleOpenModal = () => {
     setOpenModal(!openModal);
+    console.log(openModal);
   };
 
   const completedTodo = todos.filter((todo) => !!todo.completed).length;

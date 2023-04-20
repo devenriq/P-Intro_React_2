@@ -3,7 +3,6 @@ import { TodoContext } from "../context/TodoContext";
 
 export const TodoCounter = () => {
   const { completedTodo, pendingTodo } = useContext(TodoContext);
-  console.log(completedTodo);
 
   return (
     <div className="w-full h-52 bg-red-200 text-center flex justify-center items-center flex-col">

@@ -1,7 +1,8 @@
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import { TodoItem } from "../index";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { TodoContext } from "../context/TodoContext";
+import Modal from "../modal/Modal";
 
 export const TodoList = () => {
   const {
@@ -11,6 +12,7 @@ export const TodoList = () => {
     toggleTodoDelete,
     error,
     loading,
+    openModal,
   } = useContext(TodoContext);
 
   const filteredTodo = todos.filter(({ title }) => {
@@ -18,8 +20,9 @@ export const TodoList = () => {
     return lowerTitle.includes(searchValue.toLowerCase());
   });
 
-  console.log(loading);
-  console.log(searchValue.length);
+  useEffect(() => {
+    console.log("openModal changed:", openModal);
+  }, [openModal]);
 
   return (
     <ul className="w-full h-auto flex flex-col items-center gap-3">
@@ -36,6 +39,13 @@ export const TodoList = () => {
           toggleTodoDelete={toggleTodoDelete}
         />
       ))}
+
+      {/* Se abre el modal de acuerdo a si se ha apretado o no el botón para agregar todos */}
+      {!!openModal && (
+        <Modal>
+          <p>Teleport</p>
+        </Modal>
+      )}
 
       <PlusCircleIcon className="text-purple-400 w-20 h-20" />
     </ul>

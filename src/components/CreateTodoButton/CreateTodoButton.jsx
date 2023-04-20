@@ -7,10 +7,6 @@ export const CreateTodoButton = () => {
 
   const [button, setButton] = useState([]);
 
-  // const handleAdd = () => {
-  //   setOpenModal(!openModal);
-  // };
-
   // console.log(openModal);
 
   return (
@@ -24,5 +20,3 @@ export const CreateTodoButton = () => {
     </div>
   );
 };
-
-const hola = "hola";
